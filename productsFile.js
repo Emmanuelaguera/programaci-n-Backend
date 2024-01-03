@@ -1,35 +1,22 @@
 const fs = require('fs')
 
-let products = [
-    {
-        name: 'The last of us',
-        price: 1200,
-        code: 584,
-        stock: 8,
-        id: this.id
-    },
-    {
-        name: 'Uncharted 4',
-        price: 4100,
-        code: 321,
-        stock: 5,
-        id: this.id
-    },
-    {
-        name: 'Wolfenstein THE NEW ORDER',
-        price: 2100,
-        code: 654,
-        stock: 6,
-        id: this.id
-    }
-]
+const productManager = new ProductManager();
 
-fs.writeFileSync('./test.json', JSON.stringify(products, null, 2), { encoding: 'utf-8' })
+productManager.addProduct("The Last Of Us", 1200, 584, 8);
+productManager.addProduct("Uncharted 4", 4100, 321, 5);
+productManager.addProduct("Wolfenstein THE NEW ORDER", 2100, 654, 6);
 
-fs.promises.readFile('./test.json', 'utf-8')
-    .then(addProduct => {
-        console.log('promise:', addProduct)
-    })
-    .catch(err => {
-        console.log('Error', err)
-    })
+productManager.addProduct("The Last Of As", 1200, 584, 8);
+
+fs.promises.writeFile('./test.json',JSON.stringify(productManager),{encoding:'utf-8'})
+
+let readRes = fs.promises.readFile('./test.json', {encoding:'utf-8'})
+console.log(readRes)
+
+
+
+
+
+
+
+

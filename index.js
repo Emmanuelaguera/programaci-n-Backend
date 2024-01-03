@@ -3,7 +3,7 @@ class ProductManager {
   constructor() {
     this.products = [];
     this.id = 0;
-    this.path = './productsFile.js/test.json';
+    this.Path = './test.json';
   }
 
   getProducts() {
