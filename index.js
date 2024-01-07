@@ -11,7 +11,7 @@ class ProductManager {
   }
   getProductById(id) {
     const product = this.products.find(product => product.id === id);
-    if(!product) {
+    if (!product) {
       return "Not Found";
     }
     return product;
