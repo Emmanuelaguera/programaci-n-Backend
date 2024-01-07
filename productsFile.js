@@ -20,17 +20,21 @@ class ProductManager {
         } catch (error) {
             console.error('ERROR', error);
         }
-    } 
+    }
 
-    clearToFile() {
+    deleteProduct() {
         try {
-            const data = fs.unlinkSync(this.path, 'utf8');
+            const data = fs.promises.unlink(this.path, 'utf8');
             this.products = JSON.stringify(data);
         } catch (error) {
             console.error('PRODUCTO ELIMINADO', error);
         }
     }
-    
+
+    updateProduct() {
+
+    }
+
     getProducts() {
         this.loadFromFile();
         return this.products;
@@ -44,14 +48,14 @@ class ProductManager {
         }
         return product;
     }
-    addProduct(name, price, code, stock) {
-        if (!name || !price || !code || !stock) {
+    addProduct(name, price, code, stock, description, thumpnail) {
+        if (!name || !price || !code || !stock || !description || !thumpnail) {
             console.log("Validar Todos los campos");
         }
 
         if (!this.products.some((p) => p.code === code)) {
             this.id++;
-            const newProduct = { name, price, code, stock, id: this.id };
+            const newProduct = { name, price, code, stock, description, thumpnail, id: this.id };
 
             this.products.push(newProduct);
             this.saveToFile();
@@ -78,7 +82,7 @@ console.log('*****PRODUCT BY ID******');
 console.log(productManager.getProductById(2))
 
 console.log('*****PRODUCT CLEAR******');
-console.log(productManager.clearToFile(this.products))
+console.log(productManager.deleteProduct())
 
 
 

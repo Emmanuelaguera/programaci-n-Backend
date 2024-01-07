@@ -16,14 +16,14 @@ class ProductManager {
     }
     return product;
   }
-  addProduct(name, price, code, stock) {
-    if (!name || !price || !code || !stock) {
+  addProduct(name, price, code, stock, description, thumpnail) {
+    if (!name || !price || !code || !stock || !description || !thumpnail) {
       console.log("Validar Todos los campos");
     }
 
     if (!this.products.some((p) => p.code === code)) {
       this.id++;
-      const newProduct = { name, price, code, stock, id: this.id };
+      const newProduct = { name, price, code, stock, description, thumpnail, id: this.id };
 
       this.products.push(newProduct);
       console.log(`El producto ${name} se agreago correctamente`);
