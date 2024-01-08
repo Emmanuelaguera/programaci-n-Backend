@@ -22,17 +22,31 @@ class ProductManager {
         }
     }
 
-    deleteProduct() {
-        try {
-            const data = fs.promises.unlink(this.path, 'utf8');
-            this.products = JSON.stringify(data);
-        } catch (error) {
-            console.error('PRODUCTO ELIMINADO', error);
+    deleteProduct(id) {
+        const index = this.products.findIndex(p => p.id === id);
+        if (index === -1) {
+            console.error(`NOT FOUND`);
+            return;
         }
+        this.products.splice(index, 1);
+        this.saveToFile();
+        console.log(`PRODUCTO ELIMINADO`);
     }
-
-    updateProduct() {
-
+    updateProduct(id, updatedFields) {
+        let products = this.getProducts();
+        const productIndex = products.findIndex((product) => product.id === id);
+        if (productIndex === -1) {
+            console.log('NOT FOUND');
+            return;
+        }
+        
+        if ('id' in updatedFields) {
+            console.log('EL ID NO SE PUEDE CAMBIAR');
+            return;
+        }
+        products[productIndex] = { ...products[productIndex], ...updatedFields };
+        this.saveToFile(); 
+        return products[productIndex];
     }
 
     getProducts() {
@@ -82,7 +96,7 @@ console.log('*****PRODUCT BY ID******');
 console.log(productManager.getProductById(2))
 
 console.log('*****PRODUCT CLEAR******');
-console.log(productManager.deleteProduct())
+console.log(productManager.deleteProduct(3))
 
 
 
