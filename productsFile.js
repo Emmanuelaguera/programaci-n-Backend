@@ -39,13 +39,13 @@ class ProductManager {
             console.log('NOT FOUND');
             return;
         }
-        
+
         if ('id' in updatedFields) {
             console.log('EL ID NO SE PUEDE CAMBIAR');
             return;
         }
         products[productIndex] = { ...products[productIndex], ...updatedFields };
-        this.saveToFile(); 
+        this.saveToFile();
         return products[productIndex];
     }
 
@@ -81,27 +81,27 @@ class ProductManager {
 
 }
 
-const productManager = new ProductManager(filePath);
+module.exports = new ProductManager(filePath);
 
-productManager.addProduct("The Last Of Us", 1200, 584, 8);
-productManager.addProduct("Uncharted 4", 4100, 321, 5);
-productManager.addProduct("Wolfenstein THE NEW ORDER", 2100, 654, 6);
+// ProductManager.addProduct("The Last Of Us", 1200, 584, 8);
+// ProductManager.addProduct("Uncharted 4", 4100, 321, 5);
+// ProductManager.addProduct("Wolfenstein THE NEW ORDER", 2100, 654, 6);
 
-productManager.addProduct("The Last Of As", 1200, 584, 8);
+// ProductManager.addProduct("The Last Of As", 1200, 584, 8);
 
-console.log('*****PRODUCTS******');
-console.log(productManager.getProducts());
+// console.log('*****PRODUCTS******');
+// console.log(ProductManager.getProducts());
 
-console.log('*****PRODUCT BY ID******');
-console.log(productManager.getProductById(2))
+// console.log('*****PRODUCT BY ID******');
+// console.log(ProductManager.getProductById(2))
 
-console.log('*****PRODUCT CLEAR******');
-console.log(productManager.deleteProduct(3))
+// console.log('*****PRODUCT CLEAR******');
+// console.log(ProductManager.deleteProduct(3))
 
-console.log('*****PRODUCT UPDATEPRODUCT******');
-console.log(productManager.updatedFields)
+// console.log('*****PRODUCT UPDATEPRODUCT******');
+// console.log(ProductManager.updatedFields)
 
-module.exports = productManager
+module.exports = ProductManager
 
 
 
