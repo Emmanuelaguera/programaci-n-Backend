@@ -98,6 +98,11 @@ console.log(productManager.getProductById(2))
 console.log('*****PRODUCT CLEAR******');
 console.log(productManager.deleteProduct(3))
 
+console.log('*****PRODUCT UPDATEPRODUCT******');
+console.log(productManager.updatedFields)
+
+module.exports = productManager
+
 
 
 
