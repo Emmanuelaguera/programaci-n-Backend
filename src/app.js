@@ -2,7 +2,7 @@ const express = require('express');
 const ProductManager = require('./productsFile');
 
 const app = express();
-const productManager = new ProductManager("./games.json");
+const productManager = new ProductManager("./src/games.json");
 
 app.get('/', (req, res) => {
     res.send('Bienvenidos a Sector Games Tandil');

@@ -1,5 +1,4 @@
 const fs = require('fs');
-const filePath = './games.json';
 
 class ProductManager {
 
