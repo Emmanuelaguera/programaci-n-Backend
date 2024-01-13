@@ -49,13 +49,18 @@ class ProductManager {
         return products[productIndex];
     }
 
-    async getProducts() {
-        return await this.loadFromFile();
+    async getProducts(limit) {
+        const products = await this.loadFromFile();
+        if(limit) {
+            return  products.slice(0, limit);
+        } else {
+            return products;
+        }
     }
 
-    getProductById(id) {
-        this.loadFromFile();
-        const product = this.products.find(product => product.id === id);
+    async getProductById(id) {
+        const products = await this.getProducts();
+        const product = products.find(product => product.id === id);
         if (!product) {
             return "Not Found";
         }

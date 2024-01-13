@@ -2,21 +2,24 @@ const express = require('express');
 const ProductManager = require('./productsFile');
 
 const app = express();
-const product = new ProductManager("./games.json");
+const productManager = new ProductManager("./games.json");
 
 app.get('/', (req, res) => {
     res.send('Bienvenidos a Sector Games Tandil');
 });
 
-app.get('/allProducts', async (req, res) => {
-    let response = await product.getProducts()
-    console.log(response)
+//Todos los productos.
+app.get('/products', async (req, res) => {
+    const limit = parseInt(req.query.limit);
+    const response = await productManager.getProducts(limit);
     res.send(response);
 });
 
-app.get('/producById', async (req, res) => {
-    let response = await product. getProductById(2)
-    res.send(response);
+//Un solo producto.
+app.get('/products/:pid', async (req, res) => {
+    const productId = parseInt(req.params.pid);
+    const response = await productManager.getProductById(productId);
+    res.send(response)
 });
 
 app.listen(8080, () => {
