@@ -13,10 +13,10 @@ class ProductManager {
         fs.writeFileSync(this.path, JSON.stringify(this.products));
     }
 
-    loadFromFile() {
+    async loadFromFile() {
         try {
-            const data = fs.readFileSync(this.path, 'utf8');
-            this.products = JSON.parse(data);
+            const data = await fs.promises.readFile(this.path, 'utf8');
+            return JSON.parse(data);
         } catch (error) {
             console.error('ERROR', error);
         }
@@ -49,9 +49,8 @@ class ProductManager {
         return products[productIndex];
     }
 
-    getProducts() {
-        this.loadFromFile();
-        return this.products;
+    async getProducts() {
+        return await this.loadFromFile();
     }
 
     getProductById(id) {
@@ -81,7 +80,7 @@ class ProductManager {
 
 }
 
-module.exports = new ProductManager(filePath);
+// module.exports = new ProductManager(filePath);
 
 // ProductManager.addProduct("The Last Of Us", 1200, 584, 8);
 // ProductManager.addProduct("Uncharted 4", 4100, 321, 5);
