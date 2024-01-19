@@ -1,4 +1,5 @@
 const express = require('express');
+const uuid4 = require('uuid4')
 
 const {Router} = express
 const router = new Router ()
@@ -37,27 +38,6 @@ router.post('/', async (req, res) => {
         console.log(error);
         res.send('Error al intentar agregar productos')
 
-    }
-})
-router.put('/:pid', async (req, res) => {
-    const { pid } = req.params;
-    try {
-        const { name, price, code, stock, description, thumpnail } = req.body;
-        const response = await ProductManager.updateProduct(id, { name, price, code, stock, description, thumpnail })
-        res.json(response)
-    } catch (error) {
-        console.log(error);
-        res.send(`Error al intentar editar productos con id ${pid}`)
-    }
-})
-router.delete('/:pid', async (req, res) => {
-    const { pid } = req.params;
-    try {
-        await ProductManager.deleteProduct(id)
-        res.send('Producto eliminado')
-    } catch (error) {
-        console.log(error);
-        res.send(`Error al intentar eliminar productos con id ${pid}`)
     }
 })
 

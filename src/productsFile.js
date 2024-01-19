@@ -1,5 +1,4 @@
 const fs = require('fs');
-const uuid4 = require ('uuid4')
 
 class ProductManager {
 
@@ -67,7 +66,6 @@ class ProductManager {
         return product;
     }
     addProduct(name, price, code, stock, description, thumpnail) {
-        const id =uuid4()
         if (!name || !price || !code || !stock || !description || !thumpnail) {
             console.log("Validar Todos los campos");
         }
