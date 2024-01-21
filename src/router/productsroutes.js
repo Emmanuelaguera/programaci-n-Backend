@@ -6,7 +6,7 @@ const router = new Router ()
 
 let pid = uuid4 ()
 
-router.get('api/products', async (req, res) => {
+router.get('/api/products', async (req, res) => {
     try {
         const { limit } = req.query;
         const products = await ProductManager.getProducts()
@@ -21,7 +21,7 @@ router.get('api/products', async (req, res) => {
     }
 })
 
-router.get('api/products/:pid', async (req, res) => {
+router.get('/api/products/:pid', async (req, res) => {
     try {
         const { pid } = req.params;
         const products = await ProductManager.getProductsById(pid)
@@ -31,7 +31,7 @@ router.get('api/products/:pid', async (req, res) => {
         res.send('Error al recibir el productos')
     }
 })
-router.post('api/products', async (req, res) => {
+router.post('/api/products', async (req, res) => {
     try {
         const { name, price, code, stock, description, thumpnail } = req.body;
         const response = await ProductManager.addProduct({ name, price, code, stock, description, thumpnail })
@@ -42,7 +42,7 @@ router.post('api/products', async (req, res) => {
 
     }
 })
-router.put('api/products:pid', async (req, res) => {
+router.put('/api/products:pid', async (req, res) => {
     const { pid } = req.params;
     try {
         const { name, price, code, stock, description, thumpnail } = req.body;
@@ -53,7 +53,7 @@ router.put('api/products:pid', async (req, res) => {
         res.send(`Error al intentar editar productos con id ${pid}`)
     }
 })
-router.delete('api/products:pid', async (req, res) => {
+router.delete('/api/products:pid', async (req, res) => {
     const { pid } = req.params;
     try {
         await ProductManager.deleteProduct(pid)

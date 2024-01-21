@@ -1,10 +1,12 @@
 const express = require('express');
 const ProductManager = require('./productsFile');
+const CartManager = require('./productsFile');
 const ProductsRoutes = require('./router/productsroutes')
 const cartRoutes = require('./router/cartsroutes')
 
 const app = express();
 const productManager = new ProductManager("./src/games.json");
+const cartManager = new CartManager("./src/cart.json");
 app.use(express.json())
 app.use('api/products', ProductsRoutes)
 app.use('api/cart', cartRoutes)

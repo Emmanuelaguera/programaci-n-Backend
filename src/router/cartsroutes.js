@@ -1,43 +1,37 @@
 const express = require('express');
 const uuid4 = require('uuid4')
 
-const {Router} = express
-const router = new Router ()
+const { Router } = express
+const router = new Router()
 
-router.get('/', async (req, res) => {
+router.post('/api/cart', async (req, res) => {
     try {
-        const { limit } = req.query;
-        const products = ProductManager.getProducts()
-
-        if (limit) {
-            const limitedProducts = products.slice(0, limit)
-            return res.json(products)
-        }
-    } catch (error) {
-        console.log(error);
-        res.send('Error al recibir los productos')
-    }
-})
-
-router.get('/:pid', async (req, res) => {
-    try {
-        const { pid } = req.params;
-        const products = ProductManager.getProductsById(pid)
-        res.json(products)
-    } catch (error) {
-        console.log(error);
-        res.send('Error al recibir el productos')
-    }
-})
-router.post('/', async (req, res) => {
-    try {
-        const { name, price, code, stock, description, thumpnail } = req.body;
-        const response = await ProductManager.addProduct({ name, price, code, stock, description, thumpnail })
+        const response = await cartManager.newCart()
         res.json(response)
     } catch (error) {
         console.log(error);
-        res.send('Error al intentar agregar productos')
+        res.send('Error al crear carrito')
+    }
+})
 
+router.get('/api/cart:cid', async (req, res) => {
+    const { cid } = res.params;
+    try {
+        const response = await cartManager.getCartProducts(cid)
+        res.json(response)
+    } catch (error) {
+        res.send('Error al enviar los productos')
+    }
+})
+
+router.post('/:cid/cart/:pid', async (req, res) =>{
+    const {cid, pid } = req.params;
+    try {
+        await cartManager.addProductCart(cid, pid)
+        res.send('Producto agregado')
+    } catch (error) {
+        res.send ('Error al guardar producto')
+        
     }
 })
 
