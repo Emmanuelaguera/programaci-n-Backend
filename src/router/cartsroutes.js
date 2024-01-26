@@ -27,7 +27,7 @@ router.get("/cart/:cid", async (req, res) => {
     }
 });
 
-router.post("/cart/:cid/:pid", async (req, res) => {
+router.post("/cart/:cid/product/:pid", async (req, res) => {
     const { cid, pid } = req.params;
     try {
         await cartManager.addProductCart(cid, pid);
