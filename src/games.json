@@ -1,1 +1,50 @@
-[{"name":"The Last Of Us","price":1200,"code":584,"stock":8,"id":1},{"name":"Uncharted 4","price":4100,"code":321,"stock":5,"id":2},{"name":"Wolfenstein THE NEW ORDER","price":2100,"code":654,"stock":6,"id":3},{"id":"7754d908-8062-4b3d-a77b-c0445a70a4be"}]
+[
+    {
+        "name": "The Last Of Us",
+        "description": "La trama describe las vivencias de Joel y Ellie, un par de supervivientes de una pandemia en Estados Unidos que provoca la mutación de los seres humanos en criaturas caníbales.",
+        "price": 1200,
+        "code": 584,
+        "stock": 8,
+        "id": 1
+    },
+    {
+        "name": "Uncharted 4",
+        "description": "El retirado cazafortunas Nathan Drake vive felizmente su vida junto con su esposa Elena Fisher, pero todo se derrumba cuando aparece su hermano Sam, el que Nathan pensaba que estaba muerto.",
+        "price": 4100,
+        "code": 321,
+        "stock": 5,
+        "id": 2
+    },
+    {
+        "name": "Wolfenstein THE NEW ORDER",
+        "description": "El juego se inicia en un escenario histórico alternativo (Ucronía), en el cual la Segunda Guerra Mundial se acerca a su fin gracias al aplastante poder militar nazi.",
+        "price": 2100,
+        "code": 654,
+        "stock": 6,
+        "id": 3
+    },
+    {
+        "name": "emmanuel",
+        "price": "5200",
+        "code": "445",
+        "stock": "1",
+        "description": "apex Legend",
+        "id": "789c2f71-ab3e-4b44-a974-e912a7358333"
+    },
+    {
+        "name": "tomy",
+        "price": "6200",
+        "code": "785",
+        "stock": "3",
+        "description": "diablo 4",
+        "id": "1b6844fa-e0b9-4579-abe9-060feb224c94"
+    },
+    {
+        "name": "leonel ",
+        "price": "8400",
+        "code": "963",
+        "stock": "16",
+        "description": "fifa 25",
+        "id": "160e0a3e-23a2-47f1-b3af-2d77cc5c39d8"
+    }
+]
