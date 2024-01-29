@@ -41,13 +41,6 @@ app.get("/realtimeproducts", async (req, res) => {
         products
     });
 });
-app.post("/", async (req, res) => {
-    const products = await productManager.getProducts();
-    res.render("home", {
-        products
-    });
-});
-
 
 //SOCKET SERVER
 const io = new Server(server)

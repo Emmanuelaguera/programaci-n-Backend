@@ -47,8 +47,20 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
-<script src="/"></script>
 <script>
+
+    fetch ('/api/products', {
+        method:'post'
+        body:'form'
+    })
+     try {
+        const form = await products();
+        return res.json(form);
+    } catch (error) {
+        console.log(error);
+        res.send("Error");
+    }
+
     const form = document.querySelector('form');
 
     form.addEventListener('submit', (e) => {
@@ -60,11 +72,15 @@
             stock: e.target['stock'].value,
             code: e.target['code'].value,
         };
-        function updateProducts(products) {
-            const productsContainer = document.querySelector('.products-container');
-            productsContainer.innerHTML = '';
-            products.forEach((product) => {
-                productsContainer.innerHTML += `
+
+    })
+
+    function updateProducts(products) {
+        const productsContainer = document.querySelector('.products-container');
+        productsContainer.innerHTML = '';
+
+        products.forEach((product) => {
+            productsContainer.innerHTML += `
                       <div class="card" style="width: 18rem;">
                 <img src="..." class="card-img-top" alt="...">
                 <div class="card-body">
@@ -76,7 +92,6 @@
                 </ul>
             </div>
       `;
-            });
-        })
-
+        });
+    }
 </script>
