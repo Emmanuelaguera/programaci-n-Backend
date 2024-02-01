@@ -46,5 +46,21 @@
         "stock": "16",
         "description": "fifa 25",
         "id": "160e0a3e-23a2-47f1-b3af-2d77cc5c39d8"
+    },
+    {
+        "name": "marita",
+        "price": "10200",
+        "code": "423",
+        "stock": "2",
+        "description": "matal gear solid 5",
+        "id": "0791d6a3-b189-4de3-8a76-9b14f7bf1ada"
+    },
+    {
+        "name": "emmanuel",
+        "price": "8400",
+        "code": "5451220",
+        "stock": "481",
+        "description": "luca",
+        "id": "55e3dce1-33a4-484c-a10e-b1462d90babd"
     }
 ]
