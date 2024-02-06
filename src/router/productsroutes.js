@@ -2,7 +2,7 @@ const express = require("express");
 const { Router } = express;
 const router = new Router();
 
-const ProductManager = require("../productsManager");
+const ProductManager = require("../dao/managers/productsManager");
 const productManager = new ProductManager("./src/games.json"); 
 
 router.get("/products", async (req, res) => {

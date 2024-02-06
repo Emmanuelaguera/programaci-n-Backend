@@ -2,11 +2,15 @@ const express = require("express");
 const handlebars = require('express-handlebars')
 const http = require('http')
 const { Server } = require('socket.io')
+const Database = require ('./dao/db/index')
+const gamesRoutes = require ('./router/gamesRoutes')
+
+
 
 const productsRoutes = require("./router/productsroutes");
 const cartRoutes = require("./router/cartsroutes");
 
-const ProductManager = require("./productsManager");
+const ProductManager = require("./dao/managers/productsManager");
 const productManager = new ProductManager("./src/games.json");
 
 const app = express();
@@ -27,6 +31,7 @@ app.use(express.json());
 //ROUTES
 app.use("/api", productsRoutes);
 app.use("/api", cartRoutes);
+app.use("/game",gamesRoutes)
 
 app.get("/", async (req, res) => {
     const products = await productManager.getProducts();
@@ -57,5 +62,6 @@ io.on('connection', (socket) => {
 
 server.listen(PORT, () => {
     console.log("Server run on port 8080");
+    Database.connect()
 });
 

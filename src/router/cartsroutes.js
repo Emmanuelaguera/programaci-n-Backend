@@ -4,7 +4,7 @@ const uuid4 = require("uuid4");
 const { Router } = express;
 const router = new Router();
 
-const CartManager = require("../cartManager");
+const CartManager = require("../dao/managers/cartManager");
 const cartManager = new CartManager("./src/cart.json");
 
 router.post("/cart", async (req, res) => {
