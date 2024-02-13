@@ -1,9 +1,11 @@
 const express = require("express");
 const { Router } = express;
 const router = new Router();
+const ProductManagerMongo = require("../dao/db/productsManager");
 
-const ProductManager = require("../dao/managers/productsManager");
+const ProductManager = require("../dao/fileSystem/productsManager");
 const productManager = new ProductManager("./src/games.json"); 
+const producmanagermongo = new ProductManagerMongo()
 
 router.get("/products", async (req, res) => {
   try {
@@ -28,9 +30,10 @@ router.get("/products/:pid", async (req, res) => {
 });
 
 router.post("/products", async (req, res) => {
+  console.log(req.body)
   try {
-    const { name, price, code, stock, description, thumbnail } = req.body; 
-    const response = await productManager.addProduct({name,price,code,stock,description,thumbnail,});
+    const { name, price, stock, category } = req.body; 
+    const response = await producmanagermongo.addProduct({name,price,stock,category});
     res.json(response);
   } catch (error) {
     console.log(error);

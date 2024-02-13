@@ -10,7 +10,7 @@ const gamesRoutes = require ('./router/gamesRoutes')
 const productsRoutes = require("./router/productsroutes");
 const cartRoutes = require("./router/cartsroutes");
 
-const ProductManager = require("./dao/managers/productsManager");
+const ProductManager = require("./dao/fileSystem/productsManager");
 const productManager = new ProductManager("./src/games.json");
 
 const app = express();

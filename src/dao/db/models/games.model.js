@@ -4,15 +4,15 @@ const GamesSchema = new mongoose.Schema({
     name: {
         type: String,
         unique: true,
-        require: true
+        required: true
     },
     price: {
         type: Number,
-        require: true
+        required: true
     },
     category: {
         type: String,
-        require: true,
+        required: true,
         enum: ['supervivencia', 'aventura', 'acción']
     },
     stock: {
