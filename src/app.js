@@ -66,3 +66,4 @@ server.listen(PORT, () => {
     Database.connect()
 });
 
+module.exports = app

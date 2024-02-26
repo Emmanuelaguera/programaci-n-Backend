@@ -5,7 +5,7 @@ const { Router } = express;
 const router = new Router();
 
 const CartManager = require("../dao/fileSystem/cartManager");
-const cartManager = new CartManager("./src/cart.json");
+const cartManager = new CartManager("../dao/db/models/carts.model");
 
 router.post("/cart", async (req, res) => {
     try {
