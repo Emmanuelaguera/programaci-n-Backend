@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
-const GamesSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        unique: true,
-        required: true
-    }
-})
+const messageSchema = new mongoose.Schema({
+    mensaje: {
+        user: String,
+        message: String,
 
-const Games = mongoose.model('Games', GamesSchema)
+    }
+});
+
+const Games = mongoose.model('Games', messageSchema)
 module.exports = Games

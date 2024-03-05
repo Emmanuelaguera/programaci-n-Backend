@@ -2,13 +2,14 @@ const express = require("express");
 const handlebars = require('express-handlebars')
 const http = require('http')
 const { Server } = require('socket.io')
-const Database = require ('./dao/db/index')
+const Database = require('./dao/db/index')
 
 
 
 const productsRoutes = require("./router/productsRoutes");
 const cartRoutes = require("./router/cartsRoutes");
 const gamesRoutes = require("./router/gamesRoutes");
+const messageRoutes= require("./router/gamesRoutes");
 
 const ProductManager = require("./dao/fileSystem/productsManager");
 const productManager = new ProductManager("./src/games.json");
@@ -31,7 +32,8 @@ app.use(express.json());
 //ROUTES
 app.use("/api", productsRoutes);
 app.use("/api", cartRoutes);
-app.use("/api",gamesRoutes);
+app.use("/api", gamesRoutes);
+app.use("/api", messageRoutes);
 
 app.get("/", async (req, res) => {
     const products = await productManager.getProducts();
