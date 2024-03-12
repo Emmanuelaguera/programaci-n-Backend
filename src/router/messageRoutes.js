@@ -4,7 +4,9 @@ const { Router } = express
 const messages = require('../dao/db/models/messages.model')
 const route = new Router
 
-route.get('/messages', )
+route.get('/', (req, res) => {
+    res.render('chat', {})
+})
 
 
 
