@@ -1,13 +1,16 @@
 const express = require("express");
 
-const { Router } = express
-const messages = require('../dao/db/models/messages.model')
-const route = new Router
+const { Router } = express;
+const Messages = require('../dao/db/models/messages.model');
+const route = new Router();
 
-route.get('/', (req, res) => {
-    res.render('chat', {})
-})
+route.get('/messages', async (req, res) => {
+    try {
+        const msg = await Messages.find();
+        res.send(msg);
+    } catch (error) {
+        console.log(error);
+    }
+});
 
-
-
-module.exports = route
+module.exports = route;

@@ -1,12 +1,9 @@
 const mongoose = require('mongoose');
 
 const messageSchema = new mongoose.Schema({
-    mensaje: {
-        user: String,
-        message: String,
-
-    }
+    username: String,
+    message: String,
 });
 
-const Games = mongoose.model('Games', messageSchema)
+const Games = mongoose.model('Messages', messageSchema)
 module.exports = Games

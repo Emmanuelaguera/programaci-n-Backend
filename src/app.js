@@ -4,7 +4,7 @@ const http = require('http')
 const { Server } = require('socket.io')
 const Database = require('./dao/db/index')
 
-
+const Messages = require('./dao/db/models/messages.model');
 
 const productsRoutes = require("./router/productsRoutes");
 const cartRoutes = require("./router/cartsRoutes");
@@ -49,17 +49,33 @@ app.get("/realtimeproducts", async (req, res) => {
     });
 });
 
+app.get("/chat", async (req, res) => {
+    res.render('chat');
+});
+
 //SOCKET SERVER
 const io = new Server(server)
-io.on('connection', (socket) => {
+io.on('connection', async (socket) => {
     console.log('Hola nuevo cliente')
     socket.emit('wellcome', 'Bienvenido cliente nuevo')
     socket.on('new-product', async (newProduct) => {
 
         console.log('Nuevo producto para agregar', newProduct);
         await productManager.addProduct(newProduct);
-        socket.emit('update-products', await productManager.getProducts());
+        io.emit('update-products', await productManager.getProducts());
 
+    });
+
+    // Emitir todos los mensajes la primera vez que se carga la App
+    const msg = await Messages.find();
+    io.emit('update-messages', msg);
+
+    socket.on('new-message', async (newMessage) => {
+        // Primero guardo el mensage en Mongo
+        await Messages.create(newMessage);
+        const msg = await Messages.find();
+        // Segundo: emito un nuevo evento porque hay un nuevo mensaje
+        io.emit('update-messages', msg);
     });
 })
 

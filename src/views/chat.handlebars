@@ -1,0 +1,51 @@
+<div class="mb-3">
+    <div>
+        <h1>
+            Chat Sector Games
+        </h1>
+        <div id="caja" class="caja"></div>
+    </div>
+
+    <form>
+        <div class="mb-3">
+            <input type="text" class="form-control" name="username" aria-describedby="emailHelp" placeholder="Tu nombre...">
+        </div>
+        <div class="mb-3">
+            <textarea class="form-control" name="message" placeholder="Tu mensaje..."></textarea>
+        </div>
+        <input type="submit" value="Enviar" class="btn btn-primary">
+    </form>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+    const socket = io();
+    const form = document.querySelector('form');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const message = {
+            username: e.target['username'].value,
+            message: e.target['message'].value,
+        };
+        socket.emit('new-message', message);
+    });
+
+    const updateMessages = (messages) => {
+        const boxMessages = document.querySelector('#caja');
+        boxMessages.innerHTML = '';
+
+        messages.forEach((msg) => {
+            boxMessages.innerHTML += `
+                <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">${msg.username}</h5>
+                    <p class="card-text">${msg.message}</p>
+                </div>
+            </div>
+      `;
+        });
+    };
+
+    socket.on('update-messages', updateMessages);
+</script>
