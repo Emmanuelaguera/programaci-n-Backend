@@ -9,7 +9,7 @@ const Messages = require('./dao/db/models/messages.model');
 const productsRoutes = require("./router/productsRoutes");
 const cartRoutes = require("./router/cartsRoutes");
 const gamesRoutes = require("./router/gamesRoutes");
-const messageRoutes= require("./router/gamesRoutes");
+const messageRoutes = require("./router/gamesRoutes");
 
 const ProductManager = require("./dao/fileSystem/productsManager");
 const productManager = new ProductManager("./src/games.json");

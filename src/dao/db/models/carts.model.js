@@ -1,25 +1,9 @@
 const mongoose = require('mongoose');
+const Products = require("./products.model")
 
 const cartsSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        unique: true,
-        required: true
-    },
-    price: {
-        type: Number,
-        required: true
-    },
-    category: {
-        type: String,
-        required: true,
-        enum: ['supervivencia', 'aventura', 'acción']
-    },
-    stock: {
-        type: Number,
-        default: 9
-    }
+    products: [Products.Schema]
 })
 
-const Games = mongoose.model('Games', cartsSchema)
-module.exports = Games
+const Carts = mongoose.model("Carts", cartsSchema)
+module.exports = Carts;
