@@ -1,4 +1,4 @@
-// const Carts = require("../dao/db/models/carts.model");
+const Carts = require("../dao/db/models/carts.model");
 const Products = require("../dao/db/models/products.model");
 
 exports.getCart = async (req, res) => {
